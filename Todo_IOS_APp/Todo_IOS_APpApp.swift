@@ -10,8 +10,11 @@ import SwiftUI
 @main
 struct Todo_IOS_APpApp: App {
     var body: some Scene {
-        NavigationView {
-            ListView()
+        WindowGroup{
+            NavigationView {
+                ListView()
+            }
         }
+        
     }
 }

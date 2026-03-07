@@ -9,26 +9,27 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State var items : [String] = [
-        "This is First Titles",
-        "This is Second Titles",
-        "Third"
+    @State var items : [itemModel] = [
+        itemModel.init(title: "This is First Titles", isDone: false),
+        itemModel.init(title: "This is Second Titles", isDone: true),
+        itemModel.init(title: "Third", isDone: false),
     ]
     
     var body: some View {
         //Todo List
         List {
-            ForEach(items, id: \.self){ items in
-                ListRowView(title: items)
+            ForEach(items){ item in
+               ListRowView(item: item)
                 
             }
         }
         .listStyle(PlainListStyle())
         .navigationTitle("Todo App 📋")
         .navigationBarItems(
-            leading: EditButton(),
+            leading: EditButton()
+                .foregroundStyle(.blue),
             trailing:
-                NavigationLink("Add", destination: Text("Desitnation"))
+                NavigationLink("Add", destination: Text("Desitnation")).foregroundStyle(.blue)
         )
     }
 }
