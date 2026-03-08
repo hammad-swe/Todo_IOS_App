@@ -5,38 +5,37 @@
 //  Created by Hammad Ali on 06/03/2026.
 //
 
-import SwiftUI
+internal import SwiftUI
 
 struct ListView: View {
-    
-    @State var items : [itemModel] = [
-        itemModel.init(title: "This is First Titles", isDone: false),
-        itemModel.init(title: "This is Second Titles", isDone: true),
-        itemModel.init(title: "Third", isDone: false),
-    ]
+    @EnvironmentObject var listViewModel : ListViewModel
     
     var body: some View {
         //Todo List
         List {
-            ForEach(items){ item in
-               ListRowView(item: item)
-                
+            ForEach(listViewModel.items){ item in
+                ListRowView(item: item)
             }
+            .onDelete(perform: listViewModel.deleteItem)
+            .onMove(perform: listViewModel.moveItem)
         }
         .listStyle(PlainListStyle())
-        .navigationTitle("Todo App 📋")
+        .navigationTitle("Todo List 📋")
         .navigationBarItems(
             leading: EditButton()
                 .foregroundStyle(.blue),
             trailing:
-                NavigationLink("Add", destination: Text("Desitnation")).foregroundStyle(.blue)
+                NavigationLink("Add", destination: AddView(textfieldText: "Write a New Task Here")).foregroundStyle(.blue)
         )
     }
 }
+
+
 
 #Preview {
     NavigationView {
         ListView()
     }
+    .environmentObject(ListViewModel())
     
 }

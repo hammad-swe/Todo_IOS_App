@@ -5,7 +5,7 @@
 //  Created by Hammad Ali on 06/03/2026.
 //
 
-import SwiftUI
+internal import SwiftUI
 
 struct AddView: View {
     
@@ -20,9 +20,7 @@ struct AddView: View {
                     .frame(height: 55)
                     .background(Color(.lightGray))
                     .cornerRadius(10)
-                Button {
-                    
-                } label: {
+                Button(action: saveButtonPressed,label: {
                     Text("Save".uppercased())
                         .foregroundStyle(.white)
                         .frame(height: 55)
@@ -30,13 +28,16 @@ struct AddView: View {
                         .background(Color.accentColor)
                         .cornerRadius(10)
                     
-                    
-                }
+                })
 
             }
             .padding(14)
         }
         .navigationTitle("Add Items 🖊️")
+    }
+    // add items
+    func saveButtonPressed(){
+        
     }
 }
 
