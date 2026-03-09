@@ -31,6 +31,23 @@ class ListViewModel : ObservableObject{
     // for Move Item
     func moveItem(from: IndexSet, to: Int){
         items.move(fromOffsets: from, toOffset: to)
+    }
+    // add Item
+    func addItem(title: String){
+        let newitem =  itemModel(title: title , isDone: false)
+        items.append(newitem)
         
+    }
+    
+    func updateItem(item: itemModel){
+//      if  let index = items.firstIndex { exixtingIndex in
+//            return exixtingIndex.id == item.id
+//      }{
+//          // run this code
+//      }
+        
+        if let index =  items.firstIndex(where: {$0.id == item.id}){
+            items[index] = item.updateCompletion()
+        }
     }
 }

@@ -15,6 +15,11 @@ struct ListView: View {
         List {
             ForEach(listViewModel.items){ item in
                 ListRowView(item: item)
+                    .onTapGesture {
+                        withAnimation(.linear){
+                            listViewModel.updateItem(item: item)
+                        }
+                    }
             }
             .onDelete(perform: listViewModel.deleteItem)
             .onMove(perform: listViewModel.moveItem)
@@ -25,7 +30,7 @@ struct ListView: View {
             leading: EditButton()
                 .foregroundStyle(.blue),
             trailing:
-                NavigationLink("Add", destination: AddView(textfieldText: "Write a New Task Here")).foregroundStyle(.blue)
+                NavigationLink("Add", destination: AddView(textfieldText:"")).foregroundStyle(.blue)
         )
     }
 }
