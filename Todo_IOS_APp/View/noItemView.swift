@@ -21,7 +21,7 @@ struct noItemView: View {
                 NavigationLink(
                     destination: AddView(textfieldText: "Add"),
                     label: {
-                    Text("Add Something New")
+                    Text("Add Something New 🥳")
                             .foregroundStyle(.white)
                             .font(.headline)
                             .frame(height: 55)
@@ -38,6 +38,7 @@ struct noItemView: View {
                 .scaleEffect(animate ? 1.1: 1.0)
                 .offset(y: animate ? -7 : 0)
             }
+            .frame(maxWidth: 400)
             .multilineTextAlignment(.center)
             .padding(40)
             .onAppear(perform: addAnimation )

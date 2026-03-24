@@ -14,7 +14,7 @@ struct ListView: View {
         
         ZStack{
             if listViewModel.items.isEmpty{
-                Text("No items")
+              noItemView()
             }
             else{
             //Todo List
@@ -37,9 +37,9 @@ struct ListView: View {
         .navigationTitle("Todo List 📋")
         .navigationBarItems(
             leading: EditButton()
-                .foregroundStyle(.blue),
+                .foregroundStyle(Color.accentColor),
             trailing:
-                NavigationLink("Add", destination: AddView(textfieldText:"")).foregroundStyle(.blue)
+                NavigationLink("Add", destination: AddView(textfieldText:"")).foregroundStyle(Color.accentColor)
         )
     }
 }
@@ -50,6 +50,7 @@ struct ListView: View {
     NavigationView {
         ListView()
     }
+    .navigationViewStyle(StackNavigationViewStyle())
     .environmentObject(ListViewModel())
     
 }
